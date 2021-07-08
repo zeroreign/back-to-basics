@@ -11,5 +11,5 @@ This is my learning playground where I am learning basic programming concepts or
 1. Coding challenges
 
 ## TODOs:
-* Anchor links to directories
-* Goal Tracker app
+- [ ] Anchor links to directories
+- [ ] Goal Tracker app
