@@ -2,8 +2,11 @@
 This is my learning playground where I am learning basic programming concepts or patterns
 
 ## In progress
-### Project
-### Reading
+- Portfolio
+### Projects
+- Portfolio
+### Reading:
+Design Patterns: Elementsof Reusable Object-Orientated Software
 
 
 ## Challenges:
