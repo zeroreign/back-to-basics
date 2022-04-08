@@ -1,6 +1,6 @@
 import { expect } from "chai"
 import { beforeEach, describe, it } from "mocha";
-import { SinonSpy, spy } from "sinon";
+import { fake, SinonSpy, spy, stub } from "sinon";
 import * as exampleService from "../src/example.service";
 import dotenv from 'dotenv';
 
@@ -40,5 +40,15 @@ describe('Test external methods', () =>{
     console.log(simpleService.callUtil());
 
     expect(spySimpleUtil.calledOnce).to.be.true
+  })
+
+  describe('Private Simulation', () => {
+    it('should spy on private mothod', () => {
+      const spyPrivate = spy(exampleService.SimpleService.prototype, <any>'simplePrivateMethod')
+      const simpleService = new exampleService.SimpleService();
+      simpleService.callPrivate();
+
+      expect(spyPrivate.calledOnce).to.be.true;
+    })
   })
 })

@@ -14,6 +14,14 @@ export class SimpleService  {
   callUtil(): string {
     return SimpleUtil.simpleUtilMethod();
   }
+
+  callPrivate(): string {
+    return this.simplePrivateMethod();
+  }
+
+  private simplePrivateMethod(): string {
+    return 'This is a private message';
+  }
 }
 
 export function simpleExternalMethod() {
