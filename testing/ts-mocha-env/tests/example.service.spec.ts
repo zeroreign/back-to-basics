@@ -42,6 +42,26 @@ describe('Test external methods', () =>{
     expect(spySimpleUtil.calledOnce).to.be.true
   })
 
+  describe('External Simulation', () => {
+
+    beforeEach(()=>{
+    })
+
+    it('should have called the call back function', async () => {
+      const stubMethod = stub(exampleService, 'createCallableMethod');
+      const fakeMethod = fake(() =>{
+        console.log('fake method');
+        return false;
+      })
+      stubMethod.returns({field: 'fake', simpleCallback: fakeMethod});
+      const simpleService = new exampleService.SimpleService();
+
+      await simpleService.callExternalModule();
+
+      expect(fakeMethod.calledOnce).to.be.true
+    })
+  })
+
   describe('Private Simulation', () => {
     it('should spy on private mothod', () => {
       const spyPrivate = spy(exampleService.SimpleService.prototype, <any>'simplePrivateMethod')

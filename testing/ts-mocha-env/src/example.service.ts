@@ -15,6 +15,13 @@ export class SimpleService  {
     return SimpleUtil.simpleUtilMethod();
   }
 
+  async callExternalModule(): Promise<void> {
+    const hasCallback = createCallableMethod();
+    await setTimeout(() => {
+      hasCallback.simpleCallback({foo: 'bar'})
+    }, 1000)
+  }
+
   callPrivate(): string {
     return this.simplePrivateMethod();
   }
@@ -32,4 +39,18 @@ export class SimpleUtil {
   static simpleUtilMethod(): string {
     return 'This is a simple util method'
   }
+}
+
+export function createCallableMethod(): SimpleInterface {
+  return {
+    field: 'foo',
+    simpleCallback: (info: Object) => {
+      return true;
+    }
+  }
+}
+
+export interface SimpleInterface {
+  field: string,
+  simpleCallback(info:Object): boolean
 }
