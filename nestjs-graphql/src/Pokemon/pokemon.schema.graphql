@@ -1,0 +1,42 @@
+type Query {
+  pokemon(names: [String], ids: [ID]): [Pokemon]
+  types: [PokemonTypes]
+}
+
+"Pokemon basic details"
+type Pokemon {
+  "The pokemon's national dex number"
+  id: ID!
+  """
+  The pokemon's name in english
+  Only english names are supported.
+  """
+  name: String!
+  types: [PokemonTypes!]
+  weight: Float!
+  height: Float!
+  "The pokemon's image url"
+  image: String!
+}
+
+"All known pokemon typpes todate"
+enum PokemonTypes {
+  NORMAL
+  FIRE
+  WATER
+  ELECTRIC
+  GRASS
+  ICE
+  FIGHTING
+  POISON
+  GROUND
+  FLYING
+  PSYCHIC
+  BUG
+  ROCK
+  GHOST
+  DRAGON
+  DARK
+  STEEL
+  FAIRY
+}
