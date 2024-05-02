@@ -16,7 +16,6 @@ import { HealthModule } from './health/health.module';
       playground: true, // There is no env for this. But in prod consider disabling it on your use case.
     }),
     HealthModule,
-  ],
-  controllers: [HealthController],
+  ]
 })
 export class AppModule {}
