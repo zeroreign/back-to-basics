@@ -1,12 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { HealthController } from './health.controller';
+import { HealthModule } from './health.module';
 
 describe('HealthController', () => {
   let controller: HealthController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [HealthController],
+      imports: [HealthModule],
     }).compile();
 
     controller = module.get<HealthController>(HealthController);
@@ -16,7 +17,13 @@ describe('HealthController', () => {
     expect(controller).toBeDefined();
   });
 
-  it('should return "OK"', () => {
-    expect(controller.check()).toBe('OK');
-  }
+  it('should return "OK"', async () => {
+    const {details, error, info, status} = await controller.check();
+    const expectedServerStatus = { info: 'Server is running', status: 'up' };
+
+    expect(details.server).toEqual(expectedServerStatus);
+    expect(error).toEqual({});
+    expect(info.server).toEqual(expectedServerStatus);
+    expect(status).toBe('ok');
+  });
 });

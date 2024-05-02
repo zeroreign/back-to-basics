@@ -2,6 +2,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
+import { HealthController } from './health/health.controller';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -13,6 +15,8 @@ import { join } from 'path';
       },
       playground: true, // There is no env for this. But in prod consider disabling it on your use case.
     }),
-  ]
+    HealthModule,
+  ],
+  controllers: [HealthController],
 })
 export class AppModule {}
