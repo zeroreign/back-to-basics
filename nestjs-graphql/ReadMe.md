@@ -5,10 +5,12 @@ Each Kata is designed to practice fundamental principles and patterns for GraphQ
 The implementation to complete the challenge will refine itself through practice.
 
 ## Katas
+*__Note:__ API Katas can be used here too(TBA LINK)*
 1. Read data from a single data source.
 1. Read and write to a datasource.
 1. Switch between multiple data sources.
 1. Restrict schema with Auth n+z
+
 
 ## Resources:
 * Different GraphQL setups via [NestJS](https://docs.nestjs.com/graphql/quick-start)
