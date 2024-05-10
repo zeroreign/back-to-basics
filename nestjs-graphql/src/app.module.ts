@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { HealthController } from './health/health.controller';
 import { HealthModule } from './health/health.module';
+import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { HealthModule } from './health/health.module';
       playground: true, // There is no env for this. But in prod consider disabling it on your use case.
     }),
     HealthModule,
+    PokemonModule,
   ]
 })
 export class AppModule {}
