@@ -1,5 +1,5 @@
 type Query {
-  pokemon(names: [String], ids: [ID]): [Pokemon]
+  pokemon(name: String, id: ID): Pokemon,
   types: [PokemonTypes]
 }
 
