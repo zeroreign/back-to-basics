@@ -64,15 +64,69 @@ describe('Pokemon', () => {
       });
     });
 
+    describe('Errors', () => {
+
+      it('should have an argument', async () => {
+        const response = await gqlRequest<{
+          pokemon: Pick<Pokemon, 'id' | 'name'>;
+        }>(app.getHttpServer()).query(gql`
+          query {
+            pokemon() {
+              id
+              name
+            }
+          }
+        `);
+
+        expect(response.errors).toBeTruthy();
+        expect(response.errors.length).toBe(1);
+        expect(response.data).toBeFalsy();
+      });
+      it('should only accept one query argument', async () => {
+        const response = await gqlRequest<{
+          pokemon: Pick<Pokemon, 'id' | 'name'>;
+        }>(app.getHttpServer()).query(gql`
+          query {
+            pokemon(id: 1, name: "bulbasaur") {
+              id
+              name
+            }
+          }
+        `);
+
+        expect(response.errors).toBeTruthy();
+        expect(response.errors.length).toBe(1);
+        expect(response.data).toBeFalsy();
+      });
+
+      it('should only get pokemon with an id greater than 0', async () => {
+        const response = await gqlRequest<{
+          pokemon: Pick<Pokemon, 'id' | 'name'>;
+        }>(app.getHttpServer()).query(gql`
+          query {
+            pokemon(id: 0) {
+              id
+              name
+            }
+          }
+        `);
+
+        expect(response.errors).toBeTruthy();
+        expect(response.errors.length).toBe(1);
+        expect(response.data).toBeFalsy();
+      });
+    });
+
     it('should get a list of all known pokemon types', async () => {
       const { data } = await gqlRequest<{ types: keyof typeof PokemonTypes }>(
         app.getHttpServer(),
-      ).query(gql`
-        query {
-          types
-        }
-      `)
-      .expectNoErrors();
+      )
+        .query(gql`
+          query {
+            types
+          }
+        `)
+        .expectNoErrors();
 
       expect(data.types).toBeTruthy();
       expect(data.types).toEqual(Object.values(PokemonTypes));
