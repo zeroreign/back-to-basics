@@ -38,7 +38,7 @@ describe('Pokemon', () => {
 
       expect(data.pokemon).toBeTruthy();
       expect(data.pokemon).toEqual({
-        id: '1',
+        id: 1,
         name: 'bulbasaur',
       });
     });
@@ -59,13 +59,12 @@ describe('Pokemon', () => {
 
       expect(data.pokemon).toBeTruthy();
       expect(data.pokemon).toEqual({
-        id: '1',
+        id: 1,
         name: 'bulbasaur',
       });
     });
 
     describe('Errors', () => {
-
       it('should have an argument', async () => {
         const response = await gqlRequest<{
           pokemon: Pick<Pokemon, 'id' | 'name'>;

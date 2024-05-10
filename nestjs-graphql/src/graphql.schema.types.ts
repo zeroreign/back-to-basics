@@ -30,12 +30,12 @@ export enum PokemonTypes {
 }
 
 export interface IQuery {
-    pokemon(name?: Nullable<string>, id?: Nullable<string>): Nullable<Pokemon> | Promise<Nullable<Pokemon>>;
+    pokemon(name?: Nullable<string>, id?: Nullable<number>): Nullable<Pokemon> | Promise<Nullable<Pokemon>>;
     types(): Nullable<Nullable<PokemonTypes>[]> | Promise<Nullable<Nullable<PokemonTypes>[]>>;
 }
 
 export interface Pokemon {
-    id: string;
+    id: number;
     name: string;
     types?: Nullable<PokemonTypes[]>;
     weight: number;

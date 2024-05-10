@@ -1,12 +1,12 @@
 type Query {
-  pokemon(name: String, id: ID): Pokemon,
+  pokemon(name: String, id: Int): Pokemon,
   types: [PokemonTypes]
 }
 
 "Pokemon basic details"
 type Pokemon {
   "The pokemon's national dex number"
-  id: ID!
+  id: Int!
   """
   The pokemon's name in english
   Only english names are supported.

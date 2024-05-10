@@ -10,7 +10,7 @@ export class PokemonService {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${identifier}`);
       const pokemon = await response.json() as PokemonApiResponse;
       return {
-        id: pokemon.id.toString(),
+        id: pokemon.id,
         name: pokemon.name,
         types: pokemon.types.map(type => PokemonTypes[type.type.name.toUpperCase()]),
         weight: pokemon.weight,

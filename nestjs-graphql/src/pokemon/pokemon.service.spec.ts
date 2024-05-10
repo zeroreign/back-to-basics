@@ -17,16 +17,16 @@ describe('PokemonService', () => {
   });
 
   it('should get a pokemon from pokemon api by id', async () => {
-    const pokemon = await service.getPokemon('1');
+    const pokemon = await service.getPokemon(1);
     expect(pokemon).toBeDefined();
-    expect(pokemon.id).toBe('1');
+    expect(pokemon.id).toBe(1);
     expect(pokemon.name).toBe('bulbasaur');
   });
 
   it('should get a pokemon from pokemon api by name', async () => {
     const pokemon = await service.getPokemon('bulbasaur');
     expect(pokemon).toBeDefined();
-    expect(pokemon.id).toBe('1');
+    expect(pokemon.id).toBe(1);
     expect(pokemon.name).toBe('bulbasaur');
   });
 });
