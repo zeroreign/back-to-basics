@@ -1,7 +1,7 @@
 import gqlRequest from 'supertest-graphql';
 import { AppModule } from '../app.module';
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import gql from 'graphql-tag';
 import { Pokemon, PokemonTypes } from '../graphql.schema.types';
 
@@ -14,6 +14,7 @@ describe('Pokemon', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.useGlobalPipes(new ValidationPipe());
     await app.init();
   });
 
@@ -70,7 +71,7 @@ describe('Pokemon', () => {
           pokemon: Pick<Pokemon, 'id' | 'name'>;
         }>(app.getHttpServer()).query(gql`
           query {
-            pokemon() {
+            pokemon(id: null, name: null) {
               id
               name
             }
@@ -78,8 +79,7 @@ describe('Pokemon', () => {
         `);
 
         expect(response.errors).toBeTruthy();
-        expect(response.errors.length).toBe(1);
-        expect(response.data).toBeFalsy();
+        expect(response.data.pokemon).toBeNull();
       });
       it('should only accept one query argument', async () => {
         const response = await gqlRequest<{
@@ -94,8 +94,7 @@ describe('Pokemon', () => {
         `);
 
         expect(response.errors).toBeTruthy();
-        expect(response.errors.length).toBe(1);
-        expect(response.data).toBeFalsy();
+        expect(response.data.pokemon).toBeNull();
       });
 
       it('should only get pokemon with an id greater than 0', async () => {
@@ -111,8 +110,7 @@ describe('Pokemon', () => {
         `);
 
         expect(response.errors).toBeTruthy();
-        expect(response.errors.length).toBe(1);
-        expect(response.data).toBeFalsy();
+        expect(response.data.pokemon).toBeNull();
       });
     });
 
