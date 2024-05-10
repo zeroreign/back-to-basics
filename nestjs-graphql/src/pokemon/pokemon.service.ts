@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Pokemon, PokemonTypes } from 'src/graphql.schema.types';
+import { Pokemon, PokemonTypes } from '../graphql.schema.types';
 import { PokemonApiResponse } from './pokemon.service.types';
 
 
